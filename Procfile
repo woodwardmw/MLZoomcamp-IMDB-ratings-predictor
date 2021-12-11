@@ -1,0 +1,1 @@
+web: gunicorn predict:app 0.0.0.0:$PORT
