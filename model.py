@@ -1,8 +1,8 @@
 from tensorflow.keras.losses import MeanSquaredError
-import tensorflow as tf
+from tensorflow.keras.layers import GlobalAvgPool1D, Dense
+from tensorflow.keras import Model
+from tensorflow.keras.optimizers import Adam
 from transformers import TFDistilBertModel, DistilBertConfig
-from transformers import AutoTokenizer, DataCollatorWithPadding
-
 
 
 def config_model(checkpoint, params = None):
@@ -76,30 +76,30 @@ def build_model(transformer, params = None):
     
     # vector = tf.reshape(last_hidden_state, [-1])
 
-    vector = tf.keras.layers.GlobalAvgPool1D()(last_hidden_state)
+    vector = GlobalAvgPool1D()(last_hidden_state)
 
-    output1 = tf.keras.layers.Dense(128, 
+    output1 = Dense(128, 
                                    activation='relu',
                                    kernel_initializer=weight_initializer,  
                                    kernel_constraint=None,
                                    bias_initializer='zeros'
                                    )(vector)
     
-    output2 = tf.keras.layers.Dense(128, 
+    output2 = Dense(128, 
                                    activation='relu',
                                    kernel_initializer=weight_initializer,  
                                    kernel_constraint=None,
                                    bias_initializer='zeros'
                                    )(output1)
     
-    output3 = tf.keras.layers.Dense(64, 
+    output3 = Dense(64, 
                                    activation='relu',
                                    kernel_initializer=weight_initializer,  
                                    kernel_constraint=None,
                                    bias_initializer='zeros'
                                    )(output2)
 
-    output4 = tf.keras.layers.Dense(10, 
+    output4 = Dense(10, 
                                    activation='relu',
                                    kernel_initializer=weight_initializer,  
                                    kernel_constraint=None,
@@ -107,7 +107,7 @@ def build_model(transformer, params = None):
                                    )(output3)
     
     # Define a single node that makes up the output layer (for binary classification)
-    output5 = tf.keras.layers.Dense(1, 
+    output5 = Dense(1, 
                                    activation=None,
                                    kernel_initializer=weight_initializer,  
                                    kernel_constraint=None,
@@ -115,10 +115,10 @@ def build_model(transformer, params = None):
                                    )(output4)
     
     # Define the model
-    model = tf.keras.Model([input_ids_layer, input_attention_layer], output5)
+    model = Model([input_ids_layer, input_attention_layer], output5)
     
     # Compile the model
-    model.compile(tf.keras.optimizers.Adam(learning_rate=learning_rate), 
+    model.compile(Adam(learning_rate=learning_rate), 
                   loss=MeanSquaredError(),
                   metrics=['mse'])
     
