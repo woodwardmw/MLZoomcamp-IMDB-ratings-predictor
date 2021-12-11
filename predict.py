@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 
 from transformers import DistilBertTokenizer, TFDistilBertModel
 from model import build_model
-from convert import convert_model
 
 
 checkpoint = './models/distilbert-base-uncased' 
