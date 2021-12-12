@@ -3,15 +3,15 @@ from flask import Flask, request, jsonify
 from transformers import DistilBertTokenizer, TFDistilBertModel
 from model import build_model
 
-
-checkpoint = './models/distilbert-base-uncased' 
+checkpoint = 'distilbert-base-uncased' 
+# checkpoint = './models/distilbert-base-uncased' 
 # tokenizer = AutoTokenizer.from_pretrained(checkpoint)
 params = {'epochs': 15, 'lr': 0.0005, 'layer_dropout': 0, 'att_dropout': 0, 'max_length': 512, 'batch_size': 8, 'max_rows': 25000}
-tokenizer = DistilBertTokenizer.from_pretrained(checkpoint, local_files_only=True)
-distilBERT = TFDistilBertModel.from_pretrained(checkpoint, local_files_only=True)
+tokenizer = DistilBertTokenizer.from_pretrained(checkpoint)
+distilBERT = TFDistilBertModel.from_pretrained(checkpoint)
 # distilBERT = model.config_model(checkpoint)
 model = build_model(distilBERT, params=params)
-# model.summary() # Remove later
+model.summary() # Remove later
 # model.load_weights('models/final_ratings_model.h5')
 model.load_weights('models/final_ratings_model_mse_4.054.h5')
 
