@@ -9,7 +9,7 @@ I wanted to pick a Natural Language Processing (NLP) task, because this is the f
 However, I saw very few examples of models that take natural language as input and output a scalar quantity, such as a rating from 1 to 10. I thought this would be an interesting challenge, because it was different to most of the NLP models I had seen, and yet seemed like it should, at least in theory, be possible.
 
 ## Data
-I decided to us a [dataset of IMDB movie ratings](http://ai.stanford.edu/~amaas/data/sentiment/). This dataset was designed for sentiment analysis - classifying the reviews as either positive or negative. For this reason it is split into two segments - positive reviews (rated 7 to 10) and negative reviews (rated 1 to 4). There are no 5 or 6 star reviews.
+I decided to us a [dataset of IMDB movie ratings](http://ai.stanford.edu/~amaas/data/sentiment/)[[1]](#). This dataset was designed for sentiment analysis - classifying the reviews as either positive or negative. For this reason it is split into two segments - positive reviews (rated 7 to 10) and negative reviews (rated 1 to 4). There are no 5 or 6 star reviews.
 
 Ideally I would have had a dataset that was representative of all reviews, but I reasoned that this dataset would still contain a great deal of relevant information on which to train the model.
 
@@ -51,3 +51,7 @@ The model was mostly trained on long-ish (several hundred word) reviews, but it 
 Although it was trained on movie data, there's no reason why the reviews need necessarily be restricted to movies...
 
 ![example](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/raw/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-31-01.png)
+
+## References
+<a id="1">[1]</a> 
+Maas, A., Daly, R., Pham, P., Huang, D., Ng, A., & Potts, C. (2011). Learning Word Vectors for Sentiment Analysis. In Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies (pp. 142–150). Association for Computational Linguistics.
