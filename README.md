@@ -31,3 +31,21 @@ The local deployment can be set up by running ```predict.py```. It can then be t
 
 ## Deployment on AWS Lambda
 The [Dockerfile](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/Dockerfile) creates a Docker image that I have uploaded to AWS Lambda, and created an API, which can be accessed at [https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict](https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict). The [lambda_test.py](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/lambda_test.py) file runs a script to access this API. You can modify the requested text and run this file, to get ratings corresponding to your text review!
+
+NOTE: It takes around 50 seconds for the AWS deployment to initiate. (This is because I had issues saving the complete model, and so could not then convert it to Tensorflow Lite, so it is running on full Tensorflow). So you need to run ```lambda_test.py```, which times out after about 30 seconds, and then wait another 20 seconds or so. After that, the AWS deployment should be ready, and will respond to ```lambda_test.py``` in around 1 second.
+
+## Examples
+The model was mostly trained on long-ish (several hundred word) reviews, but it seems to work well on short reviews too.
+
+![example](https://raw.githubusercontent.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-28-03.png)
+
+![example](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/raw/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-28-18.png)
+
+![example](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/raw/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-28-56.png)
+
+![example](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/raw/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-29-47.png)
+
+
+Although it was trained on movie data, there's no reason why the reviews need necessarily be restricted to movies...
+
+![example](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/raw/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-31-01.png)
