@@ -22,4 +22,12 @@ Since training an NLP model from scratch is prohibitively expensive in terms of 
 The various steps of data processing are outlined in the [Data preparation and analysis](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/Ratings%20Predictor%20Data%20Preparation%20and%20Analysis.ipynb) notebook.
 
 ## Model training
-I trained the model inside a Kaggle notebook, in order to make use of their GPUs. The experiments were logged using [ClearML](https://clear.ml), which I had never used before, but found to be very helpful.
+I trained the model inside a Kaggle notebook, in order to make use of their GPUs. The experiments were logged using [ClearML](https://clear.ml), which I had never used before, but found to be very helpful for tuning hyperparameters.
+
+The [training notebook](https://www.kaggle.com/markwoodward/mlzoomcamp-capstone-nlp-imdb-rating-predictor?scriptVersionId=82290969) details how the model was trained, and the hyperparameters that I decided on.
+
+## Local deployment with Flask
+The local deployment can be set up by running ```predict.py```. It can then be tested with ```predict_test.py```, which contains a test string that can be modified.
+
+## Deployment on AWS Lambda
+The [Dockerfile](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/Dockerfile) creates a Docker image that I have uploaded to AWS Lambda, and created an API, which can be accessed at [https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict](https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict). The [lambda_test.py](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/lambda_test.py) file runs a script to access this API. You can modify the requested text and run this file, to get ratings corresponding to your text review!
