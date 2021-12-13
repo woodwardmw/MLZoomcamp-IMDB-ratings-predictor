@@ -39,6 +39,8 @@ The model was mostly trained on long-ish (several hundred word) reviews, but it 
 
 ![example](https://raw.githubusercontent.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-28-03.png)
 
+![example](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/raw/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-40-38.png)
+
 ![example](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/raw/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-28-18.png)
 
 ![example](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/raw/main/images/test%20examples/Screenshot%20from%202021-12-13%2021-28-56.png)
