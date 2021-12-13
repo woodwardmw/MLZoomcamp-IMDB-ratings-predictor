@@ -9,7 +9,7 @@ I wanted to pick a Natural Language Processing (NLP) task, because this is the f
 However, I saw very few examples of models that take natural language as input and output a scalar quantity, such as a rating from 1 to 10. I thought this would be an interesting challenge, because it was different to most of the NLP models I had seen, and yet seemed like it should, at least in theory, be possible.
 
 ## Data
-I decided to us a [dataset of IMDB movie ratings](http://ai.stanford.edu/~amaas/data/sentiment/)[[1]](#). This dataset was designed for sentiment analysis - classifying the reviews as either positive or negative. For this reason it is split into two segments - positive reviews (rated 7 to 10) and negative reviews (rated 1 to 4). There are no 5 or 6 star reviews.
+I decided to us a [dataset of IMDB movie ratings](http://ai.stanford.edu/~amaas/data/sentiment/)[[1]] (#1). This dataset was designed for sentiment analysis - classifying the reviews as either positive or negative. For this reason it is split into two segments - positive reviews (rated 7 to 10) and negative reviews (rated 1 to 4). There are no 5 or 6 star reviews.
 
 Ideally I would have had a dataset that was representative of all reviews, but I reasoned that this dataset would still contain a great deal of relevant information on which to train the model.
 
