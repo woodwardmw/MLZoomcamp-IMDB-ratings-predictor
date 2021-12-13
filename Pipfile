@@ -8,6 +8,7 @@ tensorflow = "*"
 gunicorn = "*"
 transformers = "*"
 flask = "*"
+requests = "*"
 
 [dev-packages]
 

@@ -3,6 +3,7 @@ from tensorflow.keras.layers import GlobalAvgPool1D, Dense
 from tensorflow.keras import Model
 from tensorflow.keras.optimizers import Adam
 from transformers import TFDistilBertModel, DistilBertConfig
+import tensorflow as tf
 
 
 def config_model(checkpoint, params = None):
