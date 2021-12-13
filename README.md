@@ -2,7 +2,7 @@
 This project aims to take a review in natural English as an input, and to output a score between 1 and 10, corresponding to the rating that the reviewer would give, based on their review.
 
 ## Background
-I wanted to pick a Natural Language Processing (NLP) task, because this is the field that I am preparing to work in, and because I find it fascinating. NLP models often focus on a number of different tasks, such as 
+I wanted to pick a Natural Language Processing (NLP) task, because this is the field that I am preparing to work in, and because I find it fascinating. NLP models often focus on tasks such as 
 * Question answering
 * Sentiment analysis
 * Machine translation
@@ -23,12 +23,12 @@ Future development of the model could benefit from a dataset that also contained
 Since training an NLP model from scratch is prohibitively expensive in terms of time and computing power, I chose a base transformer ([distilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert)) to process the text data. My model takes the output from this transformer, and trains a neural network to optimise for my target data - the rating for each review.
 
 ## Data processing
-The various steps of data processing are outlined in the [Data preparation and analysis](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/Ratings%20Predictor%20Data%20Preparation%20and%20Analysis.ipynb) notebook.
+The various steps of data processing are outlined in the data preparation and analysis [notebook](https://github.com/woodwardmw/Ratings-predictor/blob/main/notebook.ipynb).
 
 ## Model training
 I trained the model inside a Kaggle notebook, in order to make use of their GPUs. The experiments were logged using [ClearML](https://clear.ml), which I had never used before, but found to be very helpful for tuning hyperparameters.
 
-The [training notebook](https://www.kaggle.com/markwoodward/mlzoomcamp-capstone-nlp-imdb-rating-predictor?scriptVersionId=82290969) details how the model was trained, and the hyperparameters that I decided on.
+The [training notebook](https://www.kaggle.com/markwoodward/mlzoomcamp-capstone-nlp-imdb-rating-predictor/settings?scriptVersionId=82297560) details how the model was trained, and the hyperparameters that I decided on.
 
 ## Local deployment with Flask
 The local deployment can be set up by running ```predict.py```. It can then be tested with ```predict_test.py```, which contains a test string that can be modified.
