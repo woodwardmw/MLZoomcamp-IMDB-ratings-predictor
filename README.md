@@ -10,7 +10,7 @@ I wanted to pick a Natural Language Processing (NLP) task, because this is the f
 * Text generation
 * Named entity recognition
 
-However, I saw very few examples of models that take natural language as input and output a scalar quantity, such as a rating from 1 to 10. I thought this would be an interesting challenge, because it was different to most of the NLP models I had seen, and yet seemed like it should, at least in theory, be fairly straightforward. I would be doing something very similar to sentiment analysis, but instead of classifying the data I would be giving it a numerical value. 
+However, I saw fewer examples of models that take natural language as input and output a scalar quantity, such as a rating from 1 to 10. I thought this would be an interesting challenge, because it was different to most of the NLP models I had seen, and yet seemed like it should, at least in theory, be fairly straightforward. I would be doing something very similar to sentiment analysis, but instead of classifying the data into discrete sentiments I would be giving it a numerical value. 
 
 ## Data
 I decided to use a [dataset of IMDB movie ratings](http://ai.stanford.edu/~amaas/data/sentiment/) [[1]](#1). This dataset was designed for sentiment analysis - classifying the reviews as either positive or negative. For this reason it is split into two segments - positive reviews (rated 7 to 10) and negative reviews (rated 1 to 4). There are no 5 or 6 star reviews.
