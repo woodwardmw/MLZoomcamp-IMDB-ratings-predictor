@@ -31,6 +31,8 @@ I trained the model inside a Kaggle notebook, in order to make use of their GPUs
 The [training notebook](https://www.kaggle.com/markwoodward/mlzoomcamp-capstone-nlp-imdb-rating-predictor/settings?scriptVersionId=82297560) details how the model was trained, and the hyperparameters that I decided on.
 
 ## Local deployment with Flask
+This repository includes a ```Pipfile``` and ```Pipfile.lock``` to define the virtual environment. The environment can be set up by running ```pipenv install```.
+
 The local deployment can be set up by running ```predict.py```. It can then be tested with ```predict_test.py```, which contains a test string that can be modified.
 
 ## Deployment on AWS Lambda
