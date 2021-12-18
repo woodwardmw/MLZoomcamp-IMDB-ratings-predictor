@@ -49,6 +49,9 @@ I have also uploaded the Docker image to AWS Lambda, and created an API, which c
 
 NOTE: It takes around 50 seconds for the AWS deployment to initiate. (This is because I had issues saving the complete model, and so could not then convert it to Tensorflow Lite, so it is running on full Tensorflow). So you need to run ```lambda_test.py```, which times out after about 30 seconds, and then wait another 20 seconds or so. After that, the AWS deployment should be ready, and will respond to the POST request in ```lambda_test.py``` in around 1 second.
 
+### Video of AWS Lambda Deployment
+https://user-images.githubusercontent.com/84288366/146647332-189d7933-6fb2-44cb-b59e-5c61f0fe2285.mp4
+
 ## Examples
 The model was mostly trained on long-ish (several hundred word) reviews, but it seems to work well on short reviews too.
 
