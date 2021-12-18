@@ -45,7 +45,7 @@ and then run with:
 ```docker run -it --rm -p 9696:9696 ratings-predictor ```
 
 ## Deployment on AWS Lambda
-The [Dockerfile](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/Dockerfile) creates a Docker image that I have uploaded to AWS Lambda, and created an API, which can be accessed at [https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict](https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict). The [lambda_test.py](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/lambda_test.py) file runs a script to access this API. You can modify the requested text and run this file, to get ratings corresponding to your text review!
+I have also uploaded the Docker image to AWS Lambda, and created an API, which can be accessed at [https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict](https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict). The [lambda_test.py](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/lambda_test.py) file runs a script to access this API. You can modify the requested text and run this file, to get ratings corresponding to your text review!
 
 NOTE: It takes around 50 seconds for the AWS deployment to initiate. (This is because I had issues saving the complete model, and so could not then convert it to Tensorflow Lite, so it is running on full Tensorflow). So you need to run ```lambda_test.py```, which times out after about 30 seconds, and then wait another 20 seconds or so. After that, the AWS deployment should be ready, and will respond to the POST request in ```lambda_test.py``` in around 1 second.
 
