@@ -37,8 +37,11 @@ The local deployment can be set up by running ```predict.py```. It can then be t
 
 ## Building Docker container
 The container can be built from the the [Dockerfile](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/Dockerfile) by running:
+
 ```docker build -t ratings-predictor .```
+
 and then run with:
+
 ```docker run -it --rm -p 9696:9696 ratings-predictor ```
 
 ## Deployment on AWS Lambda
