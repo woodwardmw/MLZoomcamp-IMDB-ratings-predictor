@@ -37,7 +37,7 @@ def main():
 
     train_history, trained_model = experiment.run_experiment(distilBERT_model, tf_train_dataset, tf_val_dataset, params)
 
-    trained_model.save('my_model.h5')
+    trained_model.save('models/my_model.h5')
 
     for iteration in range(params['epochs']):
         logger.report_scalar(title='MSE', series='provisional model, ' + str(params['max_rows']) + ' rows', value=train_history.history['val_mse'][iteration], iteration=iteration)

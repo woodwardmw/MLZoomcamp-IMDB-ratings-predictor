@@ -29,28 +29,29 @@ def config_model(checkpoint, params = None):
     return distilBERT
 
 def build_model(transformer, params = None):
+
+    """
+    Template for building a model off of the BERT or DistilBERT architecture
+    for a regression task. (Adapted from https://towardsdatascience.com/hugging-face-transformers-fine-tuning-distilbert-for-binary-classification-tasks-490f1d192379)
+    
+    Input:
+      - transformer:  a base Hugging Face transformer model object (BERT or DistilBERT)
+                      with no head attached.
+      - params:       a dictionary containing the following keys:
+                        'max_length':   The maximum length of the text to be inputted, in characters
+                        'lr':           The learning rate of the model
+    Output:
+      - model:        a compiled tf.keras.Model with added regression layers 
+                      on top of the base pre-trained model architecture.
+    """
     if params:
         max_length = params['max_length']
         learning_rate=params['lr']
     else:
         max_length = 512
         learning_rate = 0
-    """
-    Template for building a model off of the BERT or DistilBERT architecture
-    for a binary classification task.
-    
-    Input:
-      - transformer:  a base Hugging Face transformer model object (BERT or DistilBERT)
-                      with no added classification head attached.
-      - max_length:   integer controlling the maximum number of encoded tokens 
-                      in a given sequence.
-    
-    Output:
-      - model:        a compiled tf.keras.Model with added classification layers 
-                      on top of the base pre-trained model architecture.
-    """
-    
-    # Define weight initializer with a random seed to ensure reproducibility
+
+    # Define weight initializer
     weight_initializer = tf.keras.initializers.GlorotNormal() 
     
     # Define input layers
@@ -64,16 +65,7 @@ def build_model(transformer, params = None):
     # DistilBERT outputs a tuple where the first element at index 0
     # represents the hidden-state at the output of the model's last layer.
     # It is a tf.Tensor of shape (batch_size, sequence_length, hidden_size=768).
-    last_hidden_state = transformer([input_ids_layer, input_attention_layer])[0]
-    
-    # We only care about DistilBERT's output for the [CLS] token, 
-    # which is located at index 0 of every encoded sequence.  
-    # Splicing out the [CLS] tokens gives us 2D data.
-    # cls_token = last_hidden_state[:, 0, :]
-    
-    ##                                                 ##
-    ## Define additional dropout and dense layers here ##
-    ##                                            
+    last_hidden_state = transformer([input_ids_layer, input_attention_layer])[0]                                       
     
     # vector = tf.reshape(last_hidden_state, [-1])
 
@@ -107,7 +99,7 @@ def build_model(transformer, params = None):
                                    bias_initializer='zeros'
                                    )(output3)
     
-    # Define a single node that makes up the output layer (for binary classification)
+    # Define a single node that makes up the output layer (for regression)
     output5 = Dense(1, 
                                    activation=None,
                                    kernel_initializer=weight_initializer,  
