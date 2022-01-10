@@ -10,7 +10,7 @@ I wanted to pick a Natural Language Processing (NLP) task, because this is the f
 * Text generation
 * Named entity recognition
 
-However, I saw very few examples of models that take natural language as input and output a scalar quantity, such as a rating from 1 to 10. I thought this would be an interesting challenge, because it was different to most of the NLP models I had seen, and yet seemed like it should, at least in theory, be fairly straightforward. I would be doing something very similar to sentiment analysis, but instead of classifying the data I would be giving it a numerical value. 
+However, I saw fewer examples of models that take natural language as input and output a scalar quantity, such as a rating from 1 to 10. I thought this would be an interesting challenge, because it was different to most of the NLP models I had seen, and yet seemed like it should, at least in theory, be fairly straightforward. I would be doing something very similar to sentiment analysis, but instead of classifying the data into discrete sentiments I would be giving it a numerical value. 
 
 ## Data
 I decided to use a [dataset of IMDB movie ratings](http://ai.stanford.edu/~amaas/data/sentiment/) [[1]](#1). This dataset was designed for sentiment analysis - classifying the reviews as either positive or negative. For this reason it is split into two segments - positive reviews (rated 7 to 10) and negative reviews (rated 1 to 4). There are no 5 or 6 star reviews.
@@ -31,12 +31,26 @@ I trained the model inside a Kaggle notebook, in order to make use of their GPUs
 The [training notebook](https://www.kaggle.com/markwoodward/mlzoomcamp-capstone-nlp-imdb-rating-predictor/settings?scriptVersionId=82297560) details how the model was trained, and the hyperparameters that I decided on.
 
 ## Local deployment with Flask
+This repository includes a ```Pipfile``` and ```Pipfile.lock``` to define the virtual environment. The environment can be set up by running ```pipenv install```.
+
 The local deployment can be set up by running ```predict.py```. It can then be tested with ```predict_test.py```, which contains a test string that can be modified.
 
-## Deployment on AWS Lambda
-The [Dockerfile](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/Dockerfile) creates a Docker image that I have uploaded to AWS Lambda, and created an API, which can be accessed at [https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict](https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict). The [lambda_test.py](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/lambda_test.py) file runs a script to access this API. You can modify the requested text and run this file, to get ratings corresponding to your text review!
+## Building Docker container
+The container can be built from the the [Dockerfile](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/Dockerfile) by running:
 
-NOTE: It takes around 50 seconds for the AWS deployment to initiate. (This is because I had issues saving the complete model, and so could not then convert it to Tensorflow Lite, so it is running on full Tensorflow). So you need to run ```lambda_test.py```, which times out after about 30 seconds, and then wait another 20 seconds or so. After that, the AWS deployment should be ready, and will respond to ```lambda_test.py``` in around 1 second.
+```docker build -t ratings-predictor .```
+
+and then run with:
+
+```docker run -it --rm -p 9696:9696 ratings-predictor ```
+
+## Deployment on AWS Lambda
+I have also uploaded the Docker image to AWS Lambda, and created an API, which can be accessed at [https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict](https://ylvgq42zx5.execute-api.eu-west-2.amazonaws.com/test/predict). The [lambda_test.py](https://github.com/woodwardmw/MLZoomcamp-IMDB-ratings-predictor/blob/main/lambda_test.py) file runs a script to access this API. You can modify the requested text and run this file, to get ratings corresponding to your text review!
+
+NOTE: It takes around 50 seconds for the AWS deployment to initiate. (This is because I had issues saving the complete model, and so could not then convert it to Tensorflow Lite, so it is running on full Tensorflow). So you need to run ```lambda_test.py```, which times out after about 30 seconds, and then wait another 20 seconds or so. After that, the AWS deployment should be ready, and will respond to the POST request in ```lambda_test.py``` in around 1 second.
+
+### Video of AWS Lambda Deployment
+https://user-images.githubusercontent.com/84288366/146647332-189d7933-6fb2-44cb-b59e-5c61f0fe2285.mp4
 
 ## Examples
 The model was mostly trained on long-ish (several hundred word) reviews, but it seems to work well on short reviews too.
